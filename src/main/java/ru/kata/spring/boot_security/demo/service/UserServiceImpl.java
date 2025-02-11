@@ -16,11 +16,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -52,7 +50,6 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(userRepository.getById(id));
     }
 
-
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -65,10 +62,5 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
         return user;
-    }
-
-    @Override
-    public List<Role> findAll() {
-        return roleRepository.findAll();
     }
 }

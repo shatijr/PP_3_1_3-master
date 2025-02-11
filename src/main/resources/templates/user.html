@@ -14,9 +14,9 @@
     <div class="container-fluid">
         <!-- Текст пользователя -->
         <span class="navbar-text text-light me-auto">
-      <strong th:text="${user.getEmail()}"></strong> with roles: <span
-                th:text="${#authentication.getAuthorities()}"></span>
-    </span>
+       <strong th:text="${user.getEmail()}"></strong> with roles:
+       <span th:text="${#strings.arrayJoin(#authentication.getAuthorities().toArray(), ', ')}"></span>
+   </span>
 
         <!-- Кнопка Logout справа -->
         <form action="/logout" method="post" th:action="@{/logout}" class="d-flex">
@@ -64,7 +64,7 @@
                         <td th:text="${user.getId()}"></td>
                         <td th:text="${user.getUsername()}"></td>
                         <td th:text="${user.getEmail()}"></td>
-                        <td th:text="${user.getRoles()}"></td>
+                        <td th:text="${#strings.arrayJoin(#authentication.getAuthorities().toArray(), ', ')}"></td>
                     </tr>
                     </tbody>
                 </table>
